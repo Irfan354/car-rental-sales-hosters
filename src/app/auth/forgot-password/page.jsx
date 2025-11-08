@@ -7,7 +7,7 @@ import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
 import { Message } from 'primereact/message';
 import { Divider } from 'primereact/divider';
-import { forgotPassword } from '@/app/lib/authService';
+import { forgotPassword } from '@/app/lib/passwordService';
 
 
 export default function ForgotPasswordPage() {
