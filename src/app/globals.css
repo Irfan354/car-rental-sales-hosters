@@ -4,4 +4,16 @@
 @import 'primeicons/primeicons.css';
 @import 'primeflex/primeflex.css';
 
-/* Your custom styles */
+
+
+/* menu bar */
+ .p-menubar {
+  flex-wrap: nowrap !important;
+  white-space: nowrap !important;
+}
+
+.p-menubar .p-menuitem-link {
+  padding: 0.6rem 0.75rem; 
+  font-size: 1.2 rem;       
+} 
+

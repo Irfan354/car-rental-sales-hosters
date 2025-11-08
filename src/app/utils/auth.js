@@ -1,0 +1,17 @@
+// utils/auth.js
+export const saveAuth = (token, user) => {
+  localStorage.setItem("token", token);
+  localStorage.setItem("user", JSON.stringify(user));
+};
+
+export const getAuth = () => {
+  return {
+    token: localStorage.getItem("token"),
+    user: JSON.parse(localStorage.getItem("user")),
+  };
+};
+
+export const clearAuth = () => {
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
+};
