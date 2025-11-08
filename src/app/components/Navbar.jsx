@@ -21,7 +21,7 @@ export default function Navbar() {
         {
           label: "All Vehicles",
           icon: "pi pi-list",
-          command: () => router.push("/vehicles/vehicles-list"),
+          command: () => router.push("/vehicles"),
         },
         {
           label: "Add Vehicle",
