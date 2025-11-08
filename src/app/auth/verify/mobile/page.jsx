@@ -1,12 +1,12 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "primereact/button";
 import { Card } from "primereact/card";
 import { Toast } from "primereact/toast";
 import axios from "axios";
 
-export default function MobileOtpPage() {
+ function MobileOtpPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const toast = useRef(null);
@@ -23,9 +23,9 @@ export default function MobileOtpPage() {
 
   const inputRefs = useRef([]);
 
-  
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
   // ✅ CORRECT: Use port 8081 (not 8080)
-  const API_BASE_URL = 'http://localhost:8081';
+  // const API_BASE_URL = 'http://localhost:8081';
 
   // ✅ Automatically send OTP when page loads
   useEffect(() => {
@@ -350,3 +350,12 @@ export default function MobileOtpPage() {
     </div>
   );
 }
+
+ // ✅ Wrap in Suspense to fix useSearchParams() build error
+    export default function Page() {
+      return (
+        <Suspense fallback={<div>Loading verification page...</div>}>
+          <MobileOtpPage />
+        </Suspense>
+      );
+  }

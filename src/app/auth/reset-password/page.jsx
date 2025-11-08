@@ -1,11 +1,12 @@
   // app/(auth)/reset-password/page.jsx
   'use client';
-  import { useState, useEffect } from 'react';
+  import { useState, useEffect , useRef,Suspense} from 'react';
   import { useSearchParams, useRouter } from 'next/navigation';
   import Link from 'next/link';
-  import { resetPassword, verifyResetToken } from '@/services/authService';
+  import { resetPassword,verifyResetToken } from '@/app/lib/passwordService';
 
-  export default function ResetPasswordPage() {
+
+   function ResetPasswordPage() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [loading, setLoading] = useState(false);
@@ -16,6 +17,8 @@
     const searchParams = useSearchParams();
     const router = useRouter();
     const token = searchParams.get('token');
+
+    const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
     // Verify token on component mount
     useEffect(() => {
@@ -168,4 +171,12 @@
         </div>
       </div>
     );
+  }
+    // ✅ Wrap in Suspense to fix useSearchParams() build error
+    export default function Page() {
+      return (
+        <Suspense fallback={<div>Loading verification page...</div>}>
+          <ResetPasswordPage />
+        </Suspense>
+      );
   }
